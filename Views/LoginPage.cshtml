@@ -1,0 +1,43 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.LoginPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<section class="section">
+
+	@await Html.PartialAsync("LoginStatus")
+	
+	<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure autem vero voluptatem aliquam asperiores commodi
+		accusantium ratione optio quaerat qui tenetur officiis deleniti, dolore eum. Distinctio praesentium tempore sunt
+		hic magnam, asperiores dolore accusantium consectetur inventore necessitatibus corporis eum repellat, eveniet
+		minus eos placeat, fugit illo nobis! Labore cumque libero harum officiis consequatur ratione consequuntur ipsum,
+		dignissimos corporis quasi? Neque doloremque possimus, tempora quasi quaerat nostrum vero laudantium impedit
+		quam, corrupti saepe necessitatibus, quis eius temporibus ducimus quos nihil vel iusto! Debitis commodi et
+		tempora natus perferendis. Natus, qui! Amet, consectetur exercitationem deleniti assumenda impedit officiis eos
+		unde explicabo veniam quod at ad totam, itaque rem ullam. Praesentium, eveniet. Modi, blanditiis tempore odio
+		esse accusantium eos suscipit ratione eius aspernatur minus veritatis dolore voluptate? Eos, ipsa. Neque, unde,
+		enim iure perspiciatis nam culpa, quia repudiandae laudantium sit soluta modi. Iusto beatae perspiciatis minima
+		officia magni consequuntur, illum quae mollitia quisquam! Minima hic obcaecati voluptatum, facilis impedit quae
+		atque tempore quasi repudiandae excepturi doloremque consectetur autem reiciendis odit? Aspernatur ipsum
+		doloribus quis perferendis ut minima sit in. Sunt quos architecto neque reprehenderit? Facere placeat
+		accusantium tempora obcaecati vitae qui voluptas laborum soluta ipsa ipsum iste, quod quibusdam, error dicta
+		possimus! Iure.</div>
+
+		@await Umbraco.RenderMacroAsync("Login")
+		<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, molestiae?</div>
+		@await Umbraco.RenderMacroAsync("Register")
+		
+</section>
+
+
+<style>
+	header {
+		background-color: lightblue;
+	}
+
+	.section {
+		padding-top: 200px;
+	}
+</style>
