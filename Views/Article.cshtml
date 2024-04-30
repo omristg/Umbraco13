@@ -1,0 +1,75 @@
+﻿@using Umbraco.Cms.Core;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ArticleViewModel>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Web.Website.Controllers
+@using Umbraco13Test.Controllers
+@using static System.Net.WebRequestMethods
+@inject IPublishedContentQuery _query;
+@{
+	Layout = "master.cshtml";
+	var loggedInUser = Model.CurrentEmail;
+	System.Console.WriteLine(Model.LoggedInUser);
+	var test = Model.SearchChildren("test");
+	var result = _query.Search("Lee Kelleher");
+	var test2 = "dsadsa";
+
+}
+
+
+<div class="page">
+	<h2>Article Page</h2>
+
+	<div>Logged in user: @loggedInUser</div>
+
+	@using (Html.BeginUmbracoForm<UmbLoginStatusController>(nameof(UmbLoginStatusController.HandleLogout),
+			new { RedirectUrl = Model.Url() }))
+	{
+		<button type="submit" class="btn btn-primary">Log out</button>
+	}
+
+	@* @using (Html.BeginUmbracoForm<ArticleSurfaceController>("Search"))
+		{
+		} *@
+	<form>
+		<input type="text" name="query" />
+		<button class="subButton" type="submit">Submit</button>
+	</form>
+
+	<div class="results-container"></div>
+
+</div>
+
+<style>
+	.header {
+		background-color: lightblue;
+	}
+
+	.page {
+		padding-block: 200px 300px;
+		padding-inline: 60px;
+	}
+
+	h2 {
+		text-align: center;
+	}
+</style>
+
+<script>
+	const submitButton = document.querySelector('.subButton');
+	document.querySelector('input[name="query"]').addEventListener('input',  (e)=> {
+		const formData = new FormData(document.querySelector('form'))
+		formData.set('query', e.target.value);
+		searchAsync(formData)
+	});
+
+	async function searchAsync(formData) {
+		const res = await fetch('/umbraco/surface/ArticleSurface/Search', {
+			method: 'POST',
+			body: formData
+		})
+		const data = await res.text();
+		document.querySelector('.results-container').innerHTML = data;
+	}
+
+</script>
