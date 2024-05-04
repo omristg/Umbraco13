@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<language culture="en-US">
+	<area alias="login">
+		<key alias="greeting0">Happy super Sunday</key>
+		<key alias="greeting1">Happy manic Monday</key>
+		<key alias="greeting2">Happy tubular Tuesday</key>
+		<key alias="greeting3">Happy wonderful Wednesday</key>
+		<key alias="greeting4">Happy thunderous Thursday</key>
+		<key alias="greeting5">Happy funky Friday</key>
+		<key alias="greeting6">Happy Caturday</key>
+	</area>
+</language>
