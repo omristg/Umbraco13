@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Umbraco13Test.Data;
 using Umbraco13Test.Repositories;
+using Umbraco13Test.Notifications;
+using Umbraco.Cms.Core.Notifications;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ builder.CreateUmbracoBuilder()
 	.AddWebsite()
 	.AddDeliveryApi()
 	.AddComposers()
+	.AddNotificationHandler<ContentPublishingNotification, PrintArticleOptions>()
 	.Build();
 
 builder.Services.AddTransient<IBlogCommentRepository, BlogCommentRepository>();
