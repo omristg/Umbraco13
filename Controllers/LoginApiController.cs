@@ -21,23 +21,23 @@ public class LoginApiController : UmbracoApiController
     }
 
     [HttpPost]
-    public async Task<IActionResult> SignInApi([FromBody] LoginModel loginModel)
+    public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
     {
-        if (loginModel is null || loginModel.username is null || loginModel.password is null)
+        if (loginModel is null || loginModel.email is null || loginModel.password is null)
         {
-            return BadRequest();
+            return BadRequest("Email and password must be provided");
         }
-        var member = _memberService.GetByUsername(loginModel?.username ?? "");
+        var member = _memberService.GetByEmail(loginModel.email);
         if (member is null)
         {
-            return Unauthorized();
+            return Unauthorized("Wrong email or password");
         }
-        var result = await _signInManager.PasswordSignInAsync(member.Username, loginModel!.password, false, true);
+        var result = await _signInManager.PasswordSignInAsync(member.Username, loginModel.password, false, true);
         if (result.Succeeded)
         {
             return Ok();
         }
-        return Unauthorized();
+        return Unauthorized("Wrong email or password");
     }
 
     [HttpGet]
@@ -66,7 +66,7 @@ public class LoginApiController : UmbracoApiController
 
 public class LoginModel
 {
-    public string? username { get; set; }
+    public string? email { get; set; }
     public string? password { get; set; }
 
 }
