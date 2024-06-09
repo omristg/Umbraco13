@@ -35,7 +35,7 @@ public class LoginApiController : UmbracoApiController
         var result = await _signInManager.PasswordSignInAsync(member.Username, loginModel.password, false, true);
         if (result.Succeeded)
         {
-            return Ok();
+            return Ok("Logged in");
         }
         return Unauthorized("Wrong email or password");
     }
