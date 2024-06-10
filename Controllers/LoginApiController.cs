@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
-using Umbraco.Cms.Web.Common.Controllers;
 using Umbraco.Cms.Web.Common.Security;
 using Umbraco.Cms.Core.Security;
 using Umbraco.Cms.Core.Services;
+using Umbraco13Test.Models;
 
 namespace Umbraco13Test.Controllers;
 
-public class LoginApiController : UmbracoApiController
+[Route("api/[controller]")]
+[ApiController]
+[EndpointGroupName("Authentication")]
+public class LoginApiController : ControllerBase
 {
     private readonly IMemberSignInManager _signInManager;
     private readonly IMemberManager _memberManager;
@@ -20,7 +23,7 @@ public class LoginApiController : UmbracoApiController
         _memberService = memberService;
     }
 
-    [HttpPost]
+    [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
     {
         if (loginModel is null || loginModel.email is null || loginModel.password is null)
@@ -40,7 +43,7 @@ public class LoginApiController : UmbracoApiController
         return Unauthorized("Wrong email or password");
     }
 
-    [HttpGet]
+    [HttpGet("CheckLoggedInMember")]
     public IActionResult CheckedLoggedInMember()
     {
         var isLoggedIn = _memberManager.IsLoggedIn();
@@ -56,6 +59,7 @@ public class LoginApiController : UmbracoApiController
 
     }
 
+    [HttpPost("Logout")]
     public IActionResult Logout()
     {
         _signInManager.SignOutAsync().GetAwaiter();
@@ -64,9 +68,4 @@ public class LoginApiController : UmbracoApiController
 
 }
 
-public class LoginModel
-{
-    public string? email { get; set; }
-    public string? password { get; set; }
 
-}

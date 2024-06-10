@@ -5,15 +5,13 @@ namespace Umbraco13Test.Controllers;
 // Example for usage with different action routing options
 [ApiController]
 [Route("api/[controller]")]
+[EndpointGroupName("Products")]
 public class ProductsController : ControllerBase
 {
-    [HttpGet("{action}")]
-    public IActionResult GetAll() => Ok(new[] { "Table", "Chair", "Desk", "Computer" });
-
     [HttpGet("GetProducts")]
-    public IActionResult DifferentActionName() => Ok(new[] { "Table", "Chair", "Desk", "Computer", "TV" });
+    public IActionResult GetAll() => Ok(new[] { "Table", "Chair", "Desk", "Computer" });
 
     [HttpGet]
     [Route("/api2/different/route")]
-    public IActionResult FullDifferentRoute() => Ok(new[] { "Table", "Chair", "Desk", "Computer", "TV" });
+    public IActionResult DifferentRoute() => Ok(new[] { "Table", "Chair", "Desk", "Computer", "TV" });
 }
