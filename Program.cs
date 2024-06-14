@@ -22,6 +22,12 @@ builder.Services.AddUmbracoDbContext<MyDbContext>(options =>
 	options.UseSqlServer(config.GetConnectionString("umbracoDbDSN"));
 });
 
+builder.Services.ConfigureApplicationCookie(options =>
+    {
+        options.Cookie.SameSite = SameSiteMode.None;
+		options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+		options.Cookie.HttpOnly = true;
+    });
 
 
 WebApplication app = builder.Build();

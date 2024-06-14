@@ -60,12 +60,11 @@ public class LoginApiController : ControllerBase
     }
 
     [HttpPost("Logout")]
-    public IActionResult Logout()
+    public async Task<IActionResult> Logout()
     {
-        _signInManager.SignOutAsync().GetAwaiter();
+        await _signInManager.SignOutAsync();
         return Ok();
     }
-
 }
 
 
