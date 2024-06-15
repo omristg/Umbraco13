@@ -13,7 +13,6 @@ builder.CreateUmbracoBuilder()
 	.AddWebsite()
 	.AddDeliveryApi()
 	.AddComposers()
-	.AddNotificationHandler<ContentPublishingNotification, PrintArticleOptions>()
 	.Build();
 
 builder.Services.AddTransient<IBlogCommentRepository, BlogCommentRepository>();
