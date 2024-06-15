@@ -1,12 +1,9 @@
 {
-    "version": "0.2",
-    "ignorePaths": [],
-    "dictionaryDefinitions": [],
-    "dictionaries": [],
-    "words": [
-        "Backoffice",
-        "Umbraco"
-    ],
-    "ignoreWords": [],
-    "import": []
+	"version": "0.2",
+	"ignorePaths": [],
+	"dictionaryDefinitions": [],
+	"dictionaries": [],
+	"words": ["appsettings", "Backoffice", "Umbraco"],
+	"ignoreWords": [],
+	"import": []
 }
